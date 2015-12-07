@@ -12,7 +12,7 @@ angular.module("MonkeyButt").controller("LoginCtrl", ["$scope", "$firebaseAuth",
         .then(function(userData) {
           console.log("User " + userData.uid + " created successfully!");
           $scope.loginUser();
-          $location.path('/dashboard')
+          $location.path('/dashboard');
     	}).catch(function(error) {
     		console.error("Error: ", error);
     	});
