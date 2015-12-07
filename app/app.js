@@ -8,6 +8,11 @@ angular
       controller: '',
       controllerAs: '',
     })
+    .when('/dashboard', {
+      templateUrl: './partials/dashboard.html',
+      controller: '',
+      controllerAs: '',
+    })
     .otherwise({
       redirectTo: '/login'
     });
