@@ -1,7 +1,8 @@
 angular
   .module('MonkeyButt', ['ngRoute'] )
   .config( function routeConfig($routeProvider) {
-  
+ 
+
   $routeProvider
     .when('/login', {
       templateUrl: './partials/splash-login.html',
@@ -10,8 +11,8 @@ angular
     })
     .when('/dashboard', {
       templateUrl: './partials/dashboard.html',
-      controller: '',
-      controllerAs: '',
+      controller: 'DashboardController',
+      controllerAs: 'dashboardCtrl',
     })
     .otherwise({
       redirectTo: '/login'
