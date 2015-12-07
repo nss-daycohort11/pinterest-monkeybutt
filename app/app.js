@@ -16,5 +16,4 @@ angular
     .otherwise({
       redirectTo: '/login'
     });
-
 });
