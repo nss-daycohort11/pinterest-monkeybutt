@@ -13,12 +13,12 @@ function DashboardController () {
 		poopedBy: [],
 		imageURL: "",
 		contentURL: "",
-	}
+	};
 
 
 
 	vm.addPoop = function() {
 		console.log("smearing poop ALL OVER YOUR WALL!!");
 		
-	}
+	};
 }

@@ -12,7 +12,7 @@ angular.module("MonkeyButt").controller("LoginCtrl", ["$scope", "$firebaseAuth",
         .then(function(userData) {
           console.log("User " + userData.uid + " created successfully!");
           $scope.loginUser();
-          $location.path('/dashboard')
+          $location.path('/dashboard');
     	}).catch(function(error) {
     		console.error("Error: ", error);
     	});
@@ -22,10 +22,11 @@ angular.module("MonkeyButt").controller("LoginCtrl", ["$scope", "$firebaseAuth",
     	$scope.ref.$authWithPassword($scope.userObj)
     	.then(function(authData) {
           console.log("Logged in as:", authData.uid);
-          $location.path('/dashboard')
+          $location.path('/dashboard');
         }).catch(function(error) {
           console.error("Error: ", error);
         });
     };
+
 
 }]);
