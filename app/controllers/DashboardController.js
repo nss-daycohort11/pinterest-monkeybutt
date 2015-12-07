@@ -2,16 +2,14 @@ angular
 	.module("MonkeyButt")
 	.controller('DashboardController', DashboardController);
 
-function DashboardController ($firebaseArray, $scope, $firebaseAuth) {
+function DashboardController ($firebaseArray, $firebaseAuth) {
 	var vm = this;
-	var ref = new Firebase("https://monkeybutt.firebaseio.com");
- 	$scope.ref = $firebaseAuth(ref);
-	vm.ref = new Firebase("https://monkeybutt.firebaseio.com/poops");
+	vm.ref = new Firebase("https://monkeybutt.firebaseio.com");
+ 	vm.authData = $firebaseAuth(vm.ref);
+	vm.poopsRef = new Firebase("https://monkeybutt.firebaseio.com/poops");
+	vm.poops = $firebaseArray(vm.poopsRef);
+	console.log("poops",vm.poops);
 	vm.uid = vm.ref.getAuth().uid;
-	console.log("uid",vm.uid);
-
-	vm.greeting = 'Hola Terra!';
-	console.log(vm.greeting);
 
 	vm.newPoop = {
 		createdBy: vm.uid,
@@ -20,14 +18,13 @@ function DashboardController ($firebaseArray, $scope, $firebaseAuth) {
 		contentURL: "",
 	};
 
- 	$scope.logOut = function () {
- 		$scope.ref.$unauth();
+ 	vm.logOut = function () {
+ 		vm.authData.$unauth();
  	};
 
 	vm.addPoop = function() {
 		console.log("smearing poop ALL OVER YOUR WALL!!");
 		// add poop to firebase array
-		vm.poops = $firebaseArray(vm.ref);
 		vm.poops.$add(vm.newPoop);
 		console.log("vm.poops",vm.poops);
 	};

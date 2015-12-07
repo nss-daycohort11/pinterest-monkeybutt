@@ -41,6 +41,18 @@
 </nav>
 <!-- end navigation -->
 
+<!-- Poops -->
+<div class="container">
+  <div class="row">
+    <div ng-repeat="poop in dashboardCtrl.poops">
+      <div class="col-md-3">  
+        <img class="poopy-pics" src="{{poop.poopyPic}}" alt="poopy pic">
+        <a href="{{poop.contentURL}}">Content</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Poop Modal -->
 <div class="modal fade" id="addPoop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
