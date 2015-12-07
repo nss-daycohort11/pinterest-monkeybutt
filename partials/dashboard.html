@@ -1,0 +1,67 @@
+<!-- navigation -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <!-- Search field -->
+      <form class="navbar-form navbar-left" role="search">
+        <a href="#">
+          <img alt="Brand" src="image/mb-logo3.png" width="50px" height="30px">
+        </a>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+          <img alt="make poop" src="image/poop2.png" width="40px" height="40px" data-toggle="modal" data-target="#addPoop">
+        </div>
+      </form>
+      <!-- user dashboard -->
+      <form class="navbar-form navbar-right" role="user-home">
+        <button type="submit" class="btn btn-default">
+          <img src="image/monkey-face2.png" width="20px" height="20px">  Suzy Q
+        </button>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!-- end navigation -->
+
+<!-- Poop Modal -->
+<div class="modal fade" id="addPoop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Make a poop</h4>
+      </div>
+
+      <div class="modal-body">
+
+				<form>
+				  <div class="form-group">
+				    <label for="poop-pic">Poop Picture</label>
+				    <input type="text" class="form-control" id="poop-pic" placeholder="Poop Picture URL">
+				  </div>
+				  <div class="form-group">
+				    <label for="poop-link">Password</label>
+				    <input type="text" class="form-control" id="poop-link" placeholder="Poop link URL">
+				  </div>
+				</form>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="dashboardCtrl.addPoop()">Smear Poop</button>
+      </div>
+    </div>
+  </div>
+</div>
