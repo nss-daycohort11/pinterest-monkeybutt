@@ -1,4 +1,4 @@
-angular.module("MonkeyButt").controller("LoginCtrl", ["$scope", "$firebaseAuth", function ($scope, $firebaseAuth) {
+angular.module("MonkeyButt").controller("LoginCtrl", ["$scope", "$firebaseAuth", "$location", function ($scope, $firebaseAuth, $location) {
 	var ref = new Firebase("https://monkeybutt.firebaseio.com");
 
     $scope.ref = $firebaseAuth(ref);
@@ -12,6 +12,7 @@ angular.module("MonkeyButt").controller("LoginCtrl", ["$scope", "$firebaseAuth",
         .then(function(userData) {
           console.log("User " + userData.uid + " created successfully!");
           $scope.loginUser();
+          $location.path('/dashboard')
     	}).catch(function(error) {
     		console.error("Error: ", error);
     	});
@@ -21,6 +22,7 @@ angular.module("MonkeyButt").controller("LoginCtrl", ["$scope", "$firebaseAuth",
     	$scope.ref.$authWithPassword($scope.userObj)
     	.then(function(authData) {
           console.log("Logged in as:", authData.uid);
+          $location.path('/dashboard')
         }).catch(function(error) {
           console.error("Error: ", error);
         });
