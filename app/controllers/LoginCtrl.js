@@ -1,14 +1,14 @@
 angular.module("MonkeyButt").controller("LoginCtrl", ["$scope", "$firebaseAuth", "$location", function ($scope, $firebaseAuth, $location) {
 	var ref = new Firebase("https://monkeybutt.firebaseio.com");
 
-    $scope.ref = $firebaseAuth(ref);
+    $scope.authObj = $firebaseAuth(ref);
     $scope.userObj = {};
     
     $scope.registerUser = function () {
 
         console.log("$scope.userObj", $scope.userObj);
 
-        $scope.ref.$createUser($scope.userObj)
+        $scope.authObj.$createUser($scope.userObj)
         .then(function(userData) {
           console.log("User " + userData.uid + " created successfully!");
           $scope.loginUser();
@@ -19,7 +19,7 @@ angular.module("MonkeyButt").controller("LoginCtrl", ["$scope", "$firebaseAuth",
     };
 
     $scope.loginUser = function () {
-    	$scope.ref.$authWithPassword($scope.userObj)
+    	$scope.authObj.$authWithPassword($scope.userObj)
     	.then(function(authData) {
           console.log("Logged in as:", authData.uid);
           $location.path('/dashboard');
@@ -28,5 +28,13 @@ angular.module("MonkeyButt").controller("LoginCtrl", ["$scope", "$firebaseAuth",
         });
     };
 
+    $scope.authObj.$onAuth(function(authData) {
+    	if (authData) {
+    	console.log("Logged in as:", authData.uid);
+    	$location.path('/dashboard');
+    	} else {
+    		console.log("Logged Out");
+    	}
+    });
 
 }]);
