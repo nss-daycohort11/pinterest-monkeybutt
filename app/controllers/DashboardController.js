@@ -43,4 +43,5 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 		vm.newPoop.contentURL = "";
 		vm.newPoop.keywords = "";
 	};
-}
+
+};

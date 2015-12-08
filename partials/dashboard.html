@@ -42,8 +42,23 @@
 </nav>
 <!-- end navigation -->
 
-<!-- Poops -->
-<div class="container">
+
+
+<!-- grid poops -->
+
+<div id="wrapper">
+  <div id="columns">
+    <div ng-repeat="poop in dashboardCtrl.poops | filter: dashboardCtrl.searchText">
+      <div class="grid">
+        <img class="poopy-pics" src="{{poop.poopyPic}}" alt="poopy pic">
+        <p class="source">from <a href="{{poop.contentURL}}" target="_blank">source</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- bootstrap poops -->
+<!-- <div class="container">
   <div class="row">
     <div ng-repeat="poop in dashboardCtrl.poops | filter: dashboardCtrl.searchText">
       <div class="col-md-3 poop">  
@@ -52,7 +67,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Poop Modal -->
 <div class="modal fade" id="addPoop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
