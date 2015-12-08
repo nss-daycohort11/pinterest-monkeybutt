@@ -10,8 +10,6 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 	vm.likesRef = new Firebase("https://monkeybutt.firebaseio.com/likes");
 	vm.poopsRef = new Firebase("https://monkeybutt.firebaseio.com/poops");
 	vm.poops = $firebaseArray(vm.poopsRef);
-	vm.likesRef = new Firebase("https://monkeybutt.firebaseio.com/")
-
 
 	vm.searchText = "";
 	console.log("searchText", vm.searchText);
