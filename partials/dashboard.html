@@ -34,7 +34,7 @@
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li><a href="/#/dashboard" ng-click="dashboardCtrl.getUserMadePoops()">Poops I've Made</a></li>
-            <li><a href="/#/">Smear Canvases</a></li>
+            <li ng-repeat="canvas in dashboardCtrl.userCanvases"><a href="#" ng-click="dashboardCtrl.getCanvasPoops(canvas.name)">{{canvas.name}}</a></li>
             <li><a href="#" ng-click="dashboardCtrl.logOut()">Logout</a></li>
           </ul>
         </div>
@@ -109,9 +109,10 @@
         <form>
           <h1>What canvas?</h1>
           <div>
-            Pick canvas:
-            <select ng-options="dashboard.userCanvases"> <!-- use ng-repeat from canvases in model -->
-              
+            Pick canvas: 
+            <select 
+              ng-model="dashboardCtrl.selectedCanvas"
+              ng-options="canvas.name for canvas in dashboardCtrl.userCanvases">
             </select>
           </div>
           <div class="form-group">

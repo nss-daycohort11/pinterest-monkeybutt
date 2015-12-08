@@ -11,17 +11,17 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 	vm.poopsRef = new Firebase("https://monkeybutt.firebaseio.com/poops");
 	vm.canvasRef = new Firebase("https://monkeybutt.firebaseio.com/canvases");
 	vm.newCanvasName = "";
+	vm.selectedCanvas = "";
+	vm.userPoops=[];
 
-	vm.userCanvases = $firebaseArray(vm.canvasRef);
+	vm.canvasQuery = vm.ref.child("canvases").orderByChild("user").equalTo(vm.uid);
+	vm.userCanvases = $firebaseArray(vm.canvasQuery);
+
 
 	vm.THISPOOP = {};
 	vm.poops = $firebaseArray(vm.poopsRef);
 
-
-
-
 	vm.searchText = "";
-	console.log("searchText", vm.searchText);
 
 	// clears search input on click
 	vm.mooMethod = function(keyEvent) { 
@@ -49,9 +49,11 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 
 	// pin poop to users board
 	vm.pinPoop = function() {
-		console.log(vm.THISPOOP)
-		vm.ref.child("likes").push({poopID: vm.THISPOOP.$id, userID: vm.uid});
-		console.log("poop:", vm.THISPOOP.$id);
+		vm.ref.child("likes").push({
+			poopID: vm.THISPOOP.$id,
+			userID: vm.uid,
+			canvas: vm.selectedCanvas.name,
+		});
 		console.log("you just pinned that poop");
 	};
 
@@ -71,8 +73,28 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 		console.log("calling getUserPoops");
 		var userLikesRef = vm.ref.child("likes");
 		var userQuery = userLikesRef.orderByChild("userID").equalTo(vm.uid);
-		var userPoopIDs = $firebaseArray(userQuery);
-		console.log("userPoopIDs",userPoopIDs);
+		vm.userPoops = $firebaseArray(userQuery);
+	};
+
+	vm.getCanvasPoops = function(canvasName) {
+		console.log("calling getCanvasPoops");
+		vm.getUserPoops();
+		console.log("userPoops", vm.userPoops);
+		console.log("canvasName",canvasName);
+
+		for (poop in vm.userPoops) {
+			console.log("poop",poop);
+		}
+
+		var canvasFilteredPoops = vm.userPoops.filter(function(poop) {
+			console.log("poop",poop);
+			if (poop.canvas === canvasName) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		});
 	};
 
  	vm.logOut = function () {	
