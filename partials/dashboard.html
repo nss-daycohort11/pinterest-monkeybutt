@@ -42,32 +42,21 @@
 </nav>
 <!-- end navigation -->
 
-
-
 <!-- grid poops -->
-
 <div id="wrapper">
   <div id="columns">
     <div ng-repeat="poop in dashboardCtrl.poops | filter: dashboardCtrl.searchText">
       <div class="grid">
+        <div class="poop-controls pull-right">
+          <button class="poobtn" ng-click="dashboardCtrl.pinPoop(poop)"><img src="image/poop2.png" width="25px" height="25px"></button>
+          <button class="poobtn"><span class="glyphicon glyphicon-trash" width="25px" height="25px"></span></button>
+        </div>
         <img class="poopy-pics" src="{{poop.poopyPic}}" alt="poopy pic">
         <p class="source">from <a href="{{poop.contentURL}}" target="_blank">source</a></p>
       </div>
     </div>
   </div>
 </div>
-
-<!-- bootstrap poops -->
-<!-- <div class="container">
-  <div class="row">
-    <div ng-repeat="poop in dashboardCtrl.poops | filter: dashboardCtrl.searchText">
-      <div class="col-md-3 poop">  
-        <img class="poopy-pics" src="{{poop.poopyPic}}" alt="poopy pic">
-        <label class="source">from <a href="{{poop.contentURL}}" target="_blank">source</a></label>
-      </div>
-    </div>
-  </div>
-</div> -->
 
 <!-- Poop Modal -->
 <div class="modal fade" id="addPoop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

@@ -10,6 +10,7 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 	vm.poops = $firebaseArray(vm.poopsRef);
 	console.log("poops",vm.poops);
 	vm.uid = vm.ref.getAuth().uid;
+	vm.likesRef = new Firebase("https://monkeybutt.firebaseio.com/likes");
 
 	vm.searchText = "";
 	console.log("searchText", vm.searchText);
@@ -18,6 +19,7 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 	vm.mooMethod = function(keyEvent) { 
     	vm.searchText = "";
 	};
+
 
 	vm.newPoop = {
 		createdBy: vm.uid,
@@ -44,4 +46,11 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 		vm.newPoop.keywords = "";
 	};
 
-};
+	// pin poop to users board
+	vm.pinPoop = function(poop) {
+		vm.likesRef.push({poopID: poop.$id, userID: vm.uid});
+		console.log("poop:", poop.$id);
+		console.log("you just pinned that poop");
+	};
+}
+

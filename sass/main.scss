@@ -1,3 +1,5 @@
+
+
 .poopy-pics {
 	width: 100%;
 	height: auto;
@@ -51,7 +53,7 @@
   transition: all .2s ease;
 }
 
-.grid img {
+.grid .poopy-pics {
   width: 100%;
   border-bottom: 1px solid #ccc;
   padding-bottom: 15px;
@@ -63,6 +65,8 @@
   color: #333;
   margin: 0;
 }
+
+
 
 @media (min-width: 560px) {
   #columns {
@@ -90,4 +94,26 @@
 
   }
 }
+
+.poop-controls {
+   position: relative;
+   top: 0;
+   right: 0;
+   margin-top: -10px;
+   margin-right: -10px;
+}
+
+.grid .poop-controls {
+	visibility: hidden;
+}
+
+.grid:hover .poop-controls {
+	visibility: visible;
+}
+
+.poobtn {
+	border: none;
+	background-color: #FEFEFE;
+}
+
 
