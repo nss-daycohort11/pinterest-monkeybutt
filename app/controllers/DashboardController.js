@@ -16,9 +16,11 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 		poopedBy: [vm.uid],
 		poopyPic: "",
 		contentURL: "",
+		keywords: "",
 	};
 
- 	vm.logOut = function () {
+ 	vm.logOut = function () {	
+ 		console.log("I'm LOGGING OUT!!!");
  		vm.authData.$unauth();
  	};
 
@@ -27,5 +29,10 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 		// add poop to firebase array
 		vm.poops.$add(vm.newPoop);
 		console.log("vm.poops",vm.poops);
+		
+		// reset modal form inputs
+		vm.newPoop.poopyPic = "";
+		vm.newPoop.contentURL = "";
+		vm.newPoop.keywords = "";
 	};
 }

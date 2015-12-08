@@ -32,7 +32,7 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <li><a href="#" ng-click="logOut()">Logout</a></li>
+            <li><a href="#" ng-click="dashboardCtrl.logOut()">Logout</a></li>
           </ul>
         </div>
       </form>
@@ -45,7 +45,7 @@
 <div class="container">
   <div class="row">
     <div ng-repeat="poop in dashboardCtrl.poops">
-      <div class="col-md-3">  
+      <div class="col-md-3 poop">  
         <img class="poopy-pics" src="{{poop.poopyPic}}" alt="poopy pic">
         <a href="{{poop.contentURL}}" target="_blank">Content</a>
       </div>
@@ -73,6 +73,10 @@
 				    <label for="poop-link">Content</label>
 				    <input type="text" class="form-control" ng-model="dashboardCtrl.newPoop.contentURL" placeholder="Poop link URL">
 				  </div>
+          <div class="form-group">
+            <label for="keywords">#keywords</label>
+            <input type="text" class="form-control" ng-model="dashboardCtrl.newPoop.keywords" placeholder="#keywords">
+          </div>
 				</form>
 
       </div>
