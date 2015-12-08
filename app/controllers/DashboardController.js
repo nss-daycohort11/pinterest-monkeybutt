@@ -11,6 +11,14 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 	console.log("poops",vm.poops);
 	vm.uid = vm.ref.getAuth().uid;
 
+	vm.searchText = "";
+	console.log("searchText", vm.searchText);
+
+	// clears search input on click
+	vm.mooMethod = function(keyEvent) { 
+    	vm.searchText = "";
+	};
+
 	vm.newPoop = {
 		createdBy: vm.uid,
 		poopedBy: [vm.uid],

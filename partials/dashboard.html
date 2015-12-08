@@ -19,7 +19,8 @@
           <img alt="Brand" src="image/mb-logo3.png" width="50px" height="30px">
         </a>
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" ng-model="dashboardCtrl.searchText" ng-keypress="dashboardCtrl.fooMethod($event)" ng-click="dashboardCtrl.mooMethod($event)" class="form-control" placeholder="Search" />
+          
           <img alt="make poop" src="image/poop2.png" width="40px" height="40px" data-toggle="modal" data-target="#addPoop">
         </div>
       </form>
@@ -44,10 +45,10 @@
 <!-- Poops -->
 <div class="container">
   <div class="row">
-    <div ng-repeat="poop in dashboardCtrl.poops">
+    <div ng-repeat="poop in dashboardCtrl.poops | filter: dashboardCtrl.searchText">
       <div class="col-md-3 poop">  
         <img class="poopy-pics" src="{{poop.poopyPic}}" alt="poopy pic">
-        <a href="{{poop.contentURL}}" target="_blank">Content</a>
+        <label class="source">from <a href="{{poop.contentURL}}" target="_blank">source</a></label>
       </div>
     </div>
   </div>
