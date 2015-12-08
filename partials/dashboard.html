@@ -45,9 +45,15 @@
 <div class="container">
   <div class="row">
     <div ng-repeat="poop in dashboardCtrl.poops">
-      <div class="col-md-3">  
-        <img class="poopy-pics" src="{{poop.poopyPic}}" alt="poopy pic">
-        <a href="{{poop.contentURL}}" target="_blank">Content</a>
+      <div class="col-md-3 main-poop">  
+        <div class="poop-controls">
+          <button class="btn" ng-click="dashboardCtrl.pinPoop(poop)"><img src="image/poop2.png" width="25px" height="25px"></button>
+          <button class="btn"><span class="glyphicon glyphicon-trash" width="25px" height="25px"></span></button>
+        </div>
+        <img class="poopy-pics pull-right" src="{{poop.poopyPic}}" alt="poopy pic">
+        <div class="content">
+          <a href="{{poop.contentURL}}" target="_blank">Content</a>
+        </div>
       </div>
     </div>
   </div>

@@ -1,4 +1,27 @@
+
+
 .poopy-pics {
 	width: 80%;
 	height: auto;
+}
+
+.poop-controls {
+   position: absolute;
+   top: 5px;
+   right: 20px;
+}
+
+.main-poop .poop-controls {
+	visibility: hidden;
+}
+
+.main-poop:hover .poop-controls {
+	visibility: visible;
+}
+
+.btn {
+	padding: 0;
+	margin: 0;
+	width: 25px;
+	height: 25px;
 }
