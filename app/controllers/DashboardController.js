@@ -42,7 +42,7 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 
 	// pin poop to users board
 	vm.pinPoop = function(poop) {
-		vm.likesRef.push({poopID: poop.$id, userID: vm.uid});
+		vm.ref.child("likes").push({poopID: poop.$id, userID: vm.uid});
 		console.log("poop:", poop.$id);
 		console.log("you just pinned that poop");
 	};
