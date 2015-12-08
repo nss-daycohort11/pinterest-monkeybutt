@@ -33,6 +33,7 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="#" ng-click="dashboardCtrl.smearCanvas()">Smear Canvas</a></li>
             <li><a href="#" ng-click="dashboardCtrl.logOut()">Logout</a></li>
           </ul>
         </div>
@@ -51,6 +52,18 @@
           <button class="poobtn" ng-click="dashboardCtrl.pinPoop(poop)"><img src="image/poop2.png" width="25px" height="25px"></button>
           <button class="poobtn"><span class="glyphicon glyphicon-trash" width="25px" height="25px"></span></button>
         </div>
+        <img class="poopy-pics" src="{{poop.poopyPic}}" alt="poopy pic">
+        <p class="source">from <a href="{{poop.contentURL}}" target="_blank">source</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- smear canvas -->
+<div id="wrapper">
+  <div id="columns">
+    <div ng-repeat="poop in dashboardCtrl.poops">
+      <div class="grid">
         <img class="poopy-pics" src="{{poop.poopyPic}}" alt="poopy pic">
         <p class="source">from <a href="{{poop.contentURL}}" target="_blank">source</a></p>
       </div>

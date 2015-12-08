@@ -34,6 +34,10 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
  		vm.authData.$unauth();
  	};
 
+ 	vm.smearCanvas = function () {
+ 		console.log("Smear Canvas");
+ 	}
+
 	vm.addPoop = function() {
 		console.log("smearing poop ALL OVER YOUR WALL!!");
 		// add poop to firebase array

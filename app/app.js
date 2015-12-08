@@ -13,6 +13,11 @@ angular
       controller: 'DashboardController',
       controllerAs: 'dashboardCtrl',
     })
+    .when('/dashboard', {
+      templateUrl: './partials/dashboard.html',
+      controller: 'DashboardController',
+      controllerAs: 'dashboardCtrl',
+    })
     .otherwise({
       redirectTo: '/login'
     });
