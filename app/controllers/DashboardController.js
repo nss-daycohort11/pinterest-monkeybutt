@@ -9,7 +9,16 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 	vm.uid = vm.ref.getAuth().uid;
 	vm.likesRef = new Firebase("https://monkeybutt.firebaseio.com/likes");
 	vm.poopsRef = new Firebase("https://monkeybutt.firebaseio.com/poops");
+	vm.canvasRef = new Firebase("https://monkeybutt.firebaseio.com/canvases");
+	vm.newCanvasName = "";
+
+	vm.userCanvases = $firebaseArray(vm.canvasRef);
+
+	vm.THISPOOP = {};
 	vm.poops = $firebaseArray(vm.poopsRef);
+
+
+
 
 	vm.searchText = "";
 	console.log("searchText", vm.searchText);
@@ -19,12 +28,12 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
     	vm.searchText = "";
 	};
 
-
 	vm.newPoop = {
 		createdBy: vm.uid,
 		poopyPic: "",
 		contentURL: "",
 		keywords: "",
+		canvas: "",
 	};
 
 	vm.addPoop = function() {
@@ -39,11 +48,17 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 	};
 
 	// pin poop to users board
-	vm.pinPoop = function(poop) {
-		vm.ref.child("likes").push({poopID: poop.$id, userID: vm.uid});
-		console.log("poop:", poop.$id);
+	vm.pinPoop = function() {
+		console.log(vm.THISPOOP)
+		vm.ref.child("likes").push({poopID: vm.THISPOOP.$id, userID: vm.uid});
+		console.log("poop:", vm.THISPOOP.$id);
 		console.log("you just pinned that poop");
 	};
+
+	vm.addCanvas = function() {
+		console.log("calling addCanvas");
+		vm.ref.child("canvases").push({ "name": vm.newCanvasName, "user":vm.uid });
+	}
 
 	vm.getUserMadePoops = function() {
 		console.log("calling getUserMadePoops");
@@ -58,7 +73,6 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 		var userQuery = userLikesRef.orderByChild("userID").equalTo(vm.uid);
 		var userPoopIDs = $firebaseArray(userQuery);
 		console.log("userPoopIDs",userPoopIDs);
-
 	};
 
  	vm.logOut = function () {	
