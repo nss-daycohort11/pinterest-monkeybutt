@@ -34,6 +34,7 @@
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
             <li><a href="/#/dashboard" ng-click="dashboardCtrl.getUserMadePoops()">Poops I've Made</a></li>
+            <li><a href="/#/">Boards</a></li>
             <li><a href="#" ng-click="dashboardCtrl.logOut()">Logout</a></li>
           </ul>
         </div>
@@ -59,7 +60,24 @@
   </div>
 </div>
 
+<<<<<<< 9bf9cd56ffbebca4153017d1ce20e610f4b38e93
 <!-- Poop Modal -->
+=======
+<!-- bootstrap poops (deprecated)
+<div class="container">
+  <div class="row">
+    <div ng-repeat="poop in dashboardCtrl.poops | filter: dashboardCtrl.searchText">
+      <div class="col-md-3 poop">  
+        <img class="poopy-pics" src="{{poop.poopyPic}}" alt="poopy pic">
+        <label class="source">from <a href="{{poop.contentURL}}" target="_blank">source</a></label>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+<!-- Add Poop Modal -->
+>>>>>>> rebase development
 <div class="modal fade" id="addPoop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -69,7 +87,6 @@
       </div>
 
       <div class="modal-body">
-
 				<form>
 				  <div class="form-group">
 				    <label for="poopy-pic">Poop Picture</label>
@@ -84,12 +101,53 @@
             <input type="text" class="form-control" ng-model="dashboardCtrl.newPoop.keywords" placeholder="#keywords">
           </div>
 				</form>
-
       </div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="dashboardCtrl.addPoop()">Smear Poop</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- smear a poop modal -->
+<!-- Poop Modal -->
+<div class="modal fade" id="smearPoop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Smear this poop</h4>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <div class="dropdown">
+            <a id="dLabel" data-target="#" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Dropdown trigger
+              <span class="caret"></span>
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="dLabel">
+            </ul>
+</div>
+
+          </div>
+          <div class="form-group">
+            <label for="poop-link">Content</label>
+            <input type="text" class="form-control" ng-model="dashboardCtrl.newPoop.contentURL" placeholder="Poop link URL">
+          </div>
+          <div class="form-group">
+            <label for="keywords">#keywords</label>
+            <input type="text" class="form-control" ng-model="dashboardCtrl.newPoop.keywords" placeholder="#keywords">
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="">Smear Poop</button>
       </div>
     </div>
   </div>

@@ -9,7 +9,8 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 	vm.uid = vm.ref.getAuth().uid;
 	vm.likesRef = new Firebase("https://monkeybutt.firebaseio.com/likes");
 	vm.poopsRef = new Firebase("https://monkeybutt.firebaseio.com/poops");
-	vm.poopsArray = $firebaseArray(vm.poopsRef);
+	vm.poops = $firebaseArray(vm.poopsRef);
+	vm.likesRef = new Firebase("https://monkeybutt.firebaseio.com/")
 
 
 	vm.searchText = "";
@@ -29,8 +30,9 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 	};
 
 	vm.addPoop = function() {
-		console.log("smearing poop ALL OVER YOUR WALL!!");
 		var poopRef = vm.poopsRef.push(vm.newPoop);
+		var likesRef = vm.ref.child("likes");
+		likesRef.push( {"poopID": poopRef.key(),"userID": vm.uid});
 
 		// reset modal form inputs
 		vm.newPoop.poopyPic = "";
@@ -46,12 +48,19 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 	};
 
 	vm.getUserMadePoops = function() {
+		console.log("calling getUserMadePoops");
 		var userMadePoopsRef = vm.ref.child("poops");
     var query = userMadePoopsRef.orderByChild("createdBy").equalTo(vm.uid);
-    vm.poopsArray = $firebaseArray(query);
+    vm.poops = $firebaseArray(query);
 	};
 
 	vm.getUserPoops = function() {
+		console.log("calling getUserPoops");
+		var userLikesRef = vm.ref.child("likes");
+		var userQuery = userLikesRef.orderByChild("userID").equalTo(vm.uid);
+		var userPoopIDs = $firebaseArray(userQuery);
+		console.log("userPoopIDs",userPoopIDs);
+
 	};
 
  	vm.logOut = function () {	
