@@ -45,7 +45,7 @@
   -o-transition: all .2s ease;
   transition: all .2s ease; }
 
-.grid img {
+.grid .poopy-pics {
   width: 100%;
   border-bottom: 1px solid #ccc;
   padding-bottom: 15px;
@@ -71,5 +71,21 @@
     -webkit-column-count: 5;
     -moz-column-count: 5;
     column-count: 5; } }
+.poop-controls {
+  position: relative;
+  top: 0;
+  right: 0;
+  margin-top: -10px;
+  margin-right: -10px; }
+
+.grid .poop-controls {
+  visibility: hidden; }
+
+.grid:hover .poop-controls {
+  visibility: visible; }
+
+.poobtn {
+  border: none;
+  background-color: #FEFEFE; }
 
 /*# sourceMappingURL=main.css.map */
