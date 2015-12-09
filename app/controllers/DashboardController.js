@@ -60,7 +60,7 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 	vm.addCanvas = function() {
 		console.log("calling addCanvas");
 		vm.ref.child("canvases").push({ "name": vm.newCanvasName, "user":vm.uid });
-	}
+	};
 
 	vm.getUserMadePoops = function() {
 		console.log("calling getUserMadePoops");
@@ -83,7 +83,7 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 		console.log("userPoops", vm.userPoops);
 		console.log("canvasName",canvasName);
 
-		for (poop in vm.userPoops) {
+		for (var poop in vm.userPoops) {
 			console.log("poop",poop);
 		}
 
