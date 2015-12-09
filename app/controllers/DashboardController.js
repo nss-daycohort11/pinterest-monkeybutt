@@ -94,17 +94,35 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 		});
 
 		console.log("vm.allPoops", vm.allPoops);
-		console.log("vm.userPoops", vm.userPoops);
+		
 		
 
 	};
 
 	vm.getCanvasPoops = function(canvasName) {
-		// var userLikesRef = vm.ref.child("likes");
-		// var userQuery = userLikesRef.orderByChild("userID").equalTo(vm.uid);
-		// var userPoopPics = [];
-		// vm.userPoops = $firebaseArray(userQuery);
-		// console.log()
+		console.log("canvasName", canvasName);
+		console.log("calling getCanvasPoops");
+		var userLikesRef = vm.ref.child("likes");
+		var userQuery = userLikesRef.orderByChild("canvas").equalTo(canvasName);
+		var userPoopPics = [];
+		vm.userPoops = $firebaseArray(userQuery);
+
+		vm.userPoops.$loaded(function (data) {
+		angular.forEach(data, function (value1, key1) {
+			angular.forEach(vm.allPoops, function (value2, key2) {
+				if (value2.$id === value1.poopID) {
+					userPoopPics.push(value2);
+				}
+			});
+		});
+		console.log("vm.userPoopPics", userPoopPics);
+		vm.poops = userPoopPics;
+		console.log("vm.poops", vm.poops);
+		
+		}, function (error){
+			console.log("Error", error);
+		});
+
 
 	};
 
