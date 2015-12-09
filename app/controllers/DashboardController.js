@@ -74,6 +74,7 @@ function DashboardController ($firebaseArray, $firebaseAuth) {
 		var userLikesRef = vm.ref.child("likes");
 		var userQuery = userLikesRef.orderByChild("userID").equalTo(vm.uid);
 		vm.userPoops = $firebaseArray(userQuery);
+		vm.poops = vm.userPoops;
 	};
 
 	vm.getCanvasPoops = function(canvasName) {
