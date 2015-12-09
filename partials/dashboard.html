@@ -15,8 +15,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <!-- Search field -->
       <form class="navbar-form navbar-left" role="search">
-        <a href="#">
-          <img alt="Brand" src="image/mb-logo3.png" width="50px" height="30px">
+        <a href="/#/dashboard">
+          <img alt="Brand" src="image/mb-logo3.png" ng-click="dashboardCtrl.getUserPoops()" width="50px" height="30px">
         </a>
         <div class="form-group">
           <input type="text" ng-model="dashboardCtrl.searchText" ng-keypress="dashboardCtrl.fooMethod($event)" ng-click="dashboardCtrl.mooMethod($event)" class="form-control" placeholder="Search" />
@@ -33,6 +33,8 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <li><a href="/#/dashboard" ng-click="dashboardCtrl.getUserMadePoops()">Poops I've Made</a></li>
+            <li ng-repeat="canvas in dashboardCtrl.userCanvases"><a href="#" ng-click="dashboardCtrl.getCanvasPoops(canvas.name)">{{canvas.name}}</a></li>
             <li><a href="#" ng-click="dashboardCtrl.logOut()">Logout</a></li>
           </ul>
         </div>
@@ -48,7 +50,7 @@
     <div ng-repeat="poop in dashboardCtrl.poops | filter: dashboardCtrl.searchText">
       <div class="grid">
         <div class="poop-controls pull-right">
-          <button class="poobtn" ng-click="dashboardCtrl.pinPoop(poop)"><img src="image/poop2.png" width="25px" height="25px"></button>
+          <button class="poobtn"><img src="image/poop2.png" ng-click="dashboardCtrl.THISPOOP = poop" data-toggle="modal" data-target="#smearPoop" width="25px" height="25px"></button>
           <button class="poobtn"><span class="glyphicon glyphicon-trash" width="25px" height="25px"></span></button>
         </div>
         <img class="poopy-pics" src="{{poop.poopyPic}}" alt="poopy pic">
@@ -58,7 +60,8 @@
   </div>
 </div>
 
-<!-- Poop Modal -->
+
+<!-- Add Poop Modal -->
 <div class="modal fade" id="addPoop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -68,7 +71,6 @@
       </div>
 
       <div class="modal-body">
-
 				<form>
 				  <div class="form-group">
 				    <label for="poopy-pic">Poop Picture</label>
@@ -83,12 +85,44 @@
             <input type="text" class="form-control" ng-model="dashboardCtrl.newPoop.keywords" placeholder="#keywords">
           </div>
 				</form>
-
       </div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="dashboardCtrl.addPoop()">Smear Poop</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- smear a poop modal -->
+<div class="modal fade" id="smearPoop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        <h4 class="modal-title" id="myModalLabel">Smear this poop</h4>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <h1>What canvas?</h1>
+          <div>
+            Pick canvas: 
+            <select 
+              ng-model="dashboardCtrl.selectedCanvas"
+              ng-options="canvas.name for canvas in dashboardCtrl.userCanvases">
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="text" class="" placeholder="Add New Canvas" ng-model="dashboardCtrl.newCanvasName"><span class="glyphicon glyphicon-plus" ng-click="dashboardCtrl.addCanvas()"></span>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="dashboardCtrl.pinPoop()">Smear Poop</button>
       </div>
     </div>
   </div>
